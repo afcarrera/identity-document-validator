@@ -28,6 +28,32 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
+      - name: Create settings.xml
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+              <servers>
+                  <server>
+                      <id>central</id>
+                      <username>${{ secrets.MVN_CENTRAL_USERNAME }}</username>
+                      <password>${{ secrets.MVN_CENTRAL_PASSWORD }}</password>
+                  </server>
+              </servers>
+              <profiles>
+                  <profile>
+                      <id>gpg-signing</id>
+                      <properties>
+                          <gpg.keyname>${{ secrets.GPG_KEY_ID }}</gpg.keyname>
+                          <gpg.passphrase>${{ secrets.GPG_PASSPHRASE }}</gpg.passphrase>
+                      </properties>
+                  </profile>
+              </profiles>
+              <activeProfiles>
+                  <activeProfile>gpg-signing</activeProfile>
+              </activeProfiles>
+          </settings>
+          EOF
       - name: Import GPG signing key
         uses: crazy-max/ghaction-import-gpg@v5
         with:
@@ -39,12 +65,12 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
           cache: 'maven'
-          server-id: maven-central-release
+          server-id: central
           server-username: MVN_CENTRAL_USERNAME
           server-password: MVN_CENTRAL_PASSWORD
       - name: Release to Maven repo
         run: |
-          mvn -P release -Dgpg.keyname=${{ secrets.GPG_KEY_NAME }} -Dgpg.passphrase=${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }} deploy
+          mvn -P gpg-signing -Dgpg.keyname=${{ secrets.GPG_KEY_ID }} -Dgpg.passphrase=${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }} deploy
         env:
           MVN_CENTRAL_USERNAME: ${{ secrets.MVN_CENTRAL_USERNAME }}
           MVN_CENTRAL_PASSWORD: ${{ secrets.MVN_CENTRAL_PASSWORD }}
