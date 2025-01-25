@@ -42,6 +42,32 @@ jobs:
           server-id: maven-central-release
           server-username: MVN_CENTRAL_USERNAME
           server-password: MVN_CENTRAL_PASSWORD
+      - name: Create settings.xml
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<EOF
+          <settings>
+              <servers>
+                  <server>
+                      <id>ossrh</id>
+                      <username>${{ secrets.MVN_CENTRAL_USERNAME }}</username>
+                      <password>${{ secrets.MVN_CENTRAL_PASSWORD }}</password>
+                  </server>
+              </servers>
+              <profiles>
+                  <profile>
+                      <id>gpg-signing</id>
+                      <properties>
+                          <gpg.keyname>${{ secrets.GPG_KEY_ID }}</gpg.keyname>
+                          <gpg.passphrase>${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }}</gpg.passphrase>
+                      </properties>
+                  </profile>
+              </profiles>
+              <activeProfiles>
+                  <activeProfile>gpg-signing</activeProfile>
+              </activeProfiles>
+          </settings>
+          EOF
       - name: Release to Maven repo
         run: |
           mvn -P release -Dgpg.keyname=${{ secrets.GPG_KEY_NAME }} -Dgpg.passphrase=${{ secrets.MAVEN_SIGNING_KEY_PASSPHRASE }} deploy
