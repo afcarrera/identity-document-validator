@@ -4,6 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <url>https://github.com/afcarrera/identity-document-validator</url>
+    <description>The Identity Document Validator is a lightweight and efficient library designed to validate various types of identity documents, including national identity cards, passports, and other government-issued IDs. This library provides easy-to-use methods to ensure that the document format, length, and check digits conform to the official standards. </description>
+
     <groupId>io.github.afcarrera</groupId>
     <artifactId>identity-document-validator</artifactId>
     <version>0.0.1</version>
@@ -73,6 +76,16 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
