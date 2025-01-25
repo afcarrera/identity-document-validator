@@ -51,7 +51,7 @@ public final class CIConfig {
                     IdentityConfigUtil.getStringSetFromProperty(
                         ciPropertiesConfig.getProvinceList())),
                 new StringToIntegerHandler(),
-                new SublistExtractorHandler(
+                new SubListExtractorHandler(
                     IdentityConfigUtil.getIntegerListFromProperty(
                         ciPropertiesConfig.getIndexList())),
                 new CoefficientMultiplicationHandler(

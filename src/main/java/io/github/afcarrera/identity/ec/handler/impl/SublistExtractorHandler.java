@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * <p>This class extends {@link AbstractIdentityHandler} and extracts elements from the value list
  * of the identity document using the provided indexes, then sets this sublist in the context.
  */
-public class SublistExtractorHandler extends AbstractIdentityHandler {
+public class SubListExtractorHandler extends AbstractIdentityHandler {
 
   /** List of indexes to extract elements from the original list. */
   private final List<Integer> indexList;
@@ -35,7 +35,7 @@ public class SublistExtractorHandler extends AbstractIdentityHandler {
    *
    * @param indexList The list of indexes to extract elements from the original list.
    */
-  public SublistExtractorHandler(List<Integer> indexList) {
+  public SubListExtractorHandler(List<Integer> indexList) {
     this.indexList = indexList;
   }
 
