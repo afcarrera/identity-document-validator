@@ -54,7 +54,7 @@ public class CIPropertiesConfig {
     if (result != null) {
       return result;
     }
-    synchronized (CIConfig.class) {
+    synchronized (CIPropertiesConfig.class) {
       if (instance == null) {
         instance = new CIPropertiesConfig();
       }
