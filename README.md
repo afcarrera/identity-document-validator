@@ -48,6 +48,21 @@ Add the following to your `pom.xml`:
     <version>0.0.1</version>
 </dependency>
 ```
+If you encounter any issues with the previously mentioned dependency, you are free to exclude it. Identity Document Validator will continue to work. Example:
+```xml
+<dependency>
+    <groupId>io.github.afcarrera</groupId>
+    <artifactId>identity-document-validator</artifactId>
+    <version>0.0.1</version>
+    <exclusions>
+        <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>*</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
 
 ### Gradle Dependency
 
@@ -56,6 +71,15 @@ Add the following to your `gradle.build`:
 ```
 dependencies {
     implementation 'io.github.afcarrera:identity-document-validator:0.0.1'
+}
+```
+If you encounter any issues with the previously mentioned dependency, you are free to exclude it. Identity Document Validator will continue to work. Example:
+```
+dependencies {
+    implementation(name: 'identity-document-validator', group:'io.github.afcarrera', version: '0.0.1')
+        {
+            exclude(group: 'org.slf4j')
+        }
 }
 ```
 
