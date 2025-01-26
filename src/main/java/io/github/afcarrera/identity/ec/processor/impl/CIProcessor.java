@@ -31,9 +31,7 @@ public class CIProcessor extends AbstractIdentityProcessor {
     super();
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   protected IdentityHandler<IdentityDocument> getFirstChainElement() {
     return CIConfig.getInstance().getFirstChainElement();

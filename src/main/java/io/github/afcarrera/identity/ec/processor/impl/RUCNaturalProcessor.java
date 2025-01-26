@@ -31,9 +31,7 @@ public class RUCNaturalProcessor extends AbstractIdentityProcessor {
     super();
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   protected IdentityHandler<IdentityDocument> getFirstChainElement() {
     return RUCNaturalConfig.getInstance().getFirstChainElement();

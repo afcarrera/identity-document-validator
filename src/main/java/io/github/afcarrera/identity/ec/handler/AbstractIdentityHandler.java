@@ -25,9 +25,7 @@ public abstract class AbstractIdentityHandler implements IdentityHandler<Identit
   /** The next handler in the chain of responsibility. */
   private IdentityHandler<IdentityDocument> nextHandler;
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void checkNextHandler(IdentityDocument context) {
     if (nextHandler != null) {
@@ -35,9 +33,7 @@ public abstract class AbstractIdentityHandler implements IdentityHandler<Identit
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void setNextHandler(IdentityHandler<IdentityDocument> nextHandler) {
     this.nextHandler = nextHandler;

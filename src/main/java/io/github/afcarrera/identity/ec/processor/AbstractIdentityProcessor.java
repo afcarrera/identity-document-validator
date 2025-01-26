@@ -38,9 +38,7 @@ public abstract class AbstractIdentityProcessor implements IdentityProcessor {
     this.identityDocument = new IdentityDocument();
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public final boolean process(String value) {
     IdentityHandler<IdentityDocument> firstChainElement = getFirstChainElement();
@@ -48,9 +46,7 @@ public abstract class AbstractIdentityProcessor implements IdentityProcessor {
     return processChain(firstChainElement, identityDocument);
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public IdentityDocument getIdentityDocument() {
     return identityDocument;
