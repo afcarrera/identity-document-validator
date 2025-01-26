@@ -13,28 +13,30 @@
  */
 package io.github.afcarrera.identity.ec.validator;
 
-import io.github.afcarrera.identity.ec.annotation.CI;
+import io.github.afcarrera.identity.ec.annotation.RUCNatural;
 import io.github.afcarrera.identity.ec.processor.IdentityProcessor;
-import io.github.afcarrera.identity.ec.processor.impl.CIProcessor;
+import io.github.afcarrera.identity.ec.processor.impl.RUCNaturalProcessor;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 /**
- * Validator for CI (Identity Card) values. This class implements {@link ConstraintValidator} to
- * validate CI values using a chain of responsibility pattern and a template method.
+ * Validator for RUC (Single Taxpayer Registry) natural values. This class implements {@link
+ * ConstraintValidator} to validate RUCNatural values using a chain of responsibility pattern.
  */
-public class CIValidator implements ConstraintValidator<CI, String> {
+public class RUCNaturalValidator implements ConstraintValidator<RUCNatural, String> {
 
   /**
-   * Validates the given CI value.
+   * Validates the given RUCNatural value.
    *
-   * @param value The CI value to validate.
+   * @param value The RUCNatural value to validate.
    * @param context Context in which the constraint is evaluated.
-   * @return `true` if the CI value is valid, otherwise `false`.
+   * @return `true` if the RUCNatural value is valid, otherwise `false`.
    */
   @Override
   public boolean isValid(String value, ConstraintValidatorContext context) {
-    IdentityProcessor identityProcessor = new CIProcessor();
-    return identityProcessor.process(value);
+    IdentityProcessor identityProcessor = new RUCNaturalProcessor();
+    CIValidator ciValidator = new CIValidator();
+    return identityProcessor.process(value)
+        && ciValidator.isValid(identityProcessor.getIdentityDocument().getValue(), context);
   }
 }
