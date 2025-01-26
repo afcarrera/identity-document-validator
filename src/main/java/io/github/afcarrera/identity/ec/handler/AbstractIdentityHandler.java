@@ -26,11 +26,7 @@ public abstract class AbstractIdentityHandler implements IdentityHandler<Identit
   private IdentityHandler<IdentityDocument> nextHandler;
 
   /**
-   * Checks the next handler in the chain of responsibility.
-   *
-   * <p>If the next handler is not null, it processes the given context.
-   *
-   * @param context The context to be processed by the next handler.
+   * {@inheritDoc}
    */
   @Override
   public void checkNextHandler(IdentityDocument context) {
@@ -40,9 +36,7 @@ public abstract class AbstractIdentityHandler implements IdentityHandler<Identit
   }
 
   /**
-   * Sets the next handler in the chain of responsibility.
-   *
-   * @param nextHandler The next handler in the chain.
+   * {@inheritDoc}
    */
   @Override
   public void setNextHandler(IdentityHandler<IdentityDocument> nextHandler) {

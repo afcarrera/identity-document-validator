@@ -32,7 +32,7 @@ public class RUCNaturalProcessor extends AbstractIdentityProcessor {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   @Override
   protected IdentityHandler<IdentityDocument> getFirstChainElement() {

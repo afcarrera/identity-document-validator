@@ -39,7 +39,7 @@ public abstract class AbstractIdentityProcessor implements IdentityProcessor {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   @Override
   public final boolean process(String value) {
@@ -49,7 +49,7 @@ public abstract class AbstractIdentityProcessor implements IdentityProcessor {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   @Override
   public IdentityDocument getIdentityDocument() {

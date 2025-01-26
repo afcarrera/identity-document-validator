@@ -32,7 +32,7 @@ public class CIProcessor extends AbstractIdentityProcessor {
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   @Override
   protected IdentityHandler<IdentityDocument> getFirstChainElement() {
