@@ -36,7 +36,6 @@ public class SubStringExtractorHandler extends AbstractIdentityHandler {
    *
    * @param initialIndex The initial index for extracting the province code.
    * @param finalIndex The final index for extracting the province code.
-   * @param provinceCodeSet The set of valid province codes.
    */
   public SubStringExtractorHandler(Integer initialIndex, Integer finalIndex) {
     this.initialIndex = initialIndex;
