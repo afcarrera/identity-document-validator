@@ -11,15 +11,17 @@
         The Identity Document Validator is a lightweight and efficient library designed to validate various types of identity documents, including national identity cards, passports, and other government-issued IDs. This library provides easy-to-use methods to ensure that the document format, length, and check digits conform to the official standards. 
         \nCurrently supports the following validations:
         \n\t -Ecuador: Identity card CI
+        \n\t -Ecuador: Natural RUC
         <!--Español-->
         \nEl Validador de Documentos de Identidad es una biblioteca ligera y eficiente diseñada para validar diversos tipos de documentos de identidad, incluyendo tarjetas de identidad nacionales, pasaportes y otros documentos de identificación emitidos por el gobierno. Esta biblioteca proporciona métodos fáciles de usar para asegurar que el formato del documento, la longitud y los dígitos de control cumplan con los estándares oficiales.
         \nActualmente soporta las siguientes validaciones:
         \n\t - Ecuador: Cédula de identidad CI
+        \n\t - Ecuador: RUC Natural
     </description>
 
     <groupId>io.github.afcarrera</groupId>
     <artifactId>identity-document-validator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2</version>
 
     <licenses>
         <license>
