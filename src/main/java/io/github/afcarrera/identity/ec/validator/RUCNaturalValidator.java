@@ -21,7 +21,8 @@ import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Validator for RUC (Single Taxpayer Registry) natural values. This class implements {@link
- * ConstraintValidator} to validate RUCNatural values using a chain of responsibility pattern.
+ * ConstraintValidator} to validate RUCNatural values using a chain of responsibility pattern and a
+ * template method.
  */
 public class RUCNaturalValidator implements ConstraintValidator<RUCNatural, String> {
 
