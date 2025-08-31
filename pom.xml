@@ -21,7 +21,7 @@
 
     <groupId>io.github.afcarrera</groupId>
     <artifactId>identity-document-validator</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.3.1</version>
 
     <licenses>
         <license>
