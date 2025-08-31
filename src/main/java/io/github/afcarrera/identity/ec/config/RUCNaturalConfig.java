@@ -26,20 +26,15 @@ import java.util.List;
  */
 public final class RUCNaturalConfig {
 
-  /** Singleton instance of RUCNaturalConfig. */
-  private static volatile RUCNaturalConfig instance;
-
   /** First element in the identity handler chain. */
   private final IdentityHandler<IdentityDocument> firstChainElement;
 
   /**
-   * Private constructor to prevent instantiation.
-   *
    * <p>Retrieves configuration properties
    *
    * <p>Initialize the first element in the chain with various handlers
    */
-  private RUCNaturalConfig() {
+  RUCNaturalConfig() {
     RUCNaturalPropertiesConfig rucNaturalPropertiesConfig =
         RUCNaturalPropertiesConfig.getInstance();
     firstChainElement =
@@ -57,16 +52,7 @@ public final class RUCNaturalConfig {
    * @return Singleton instance of RUCNaturalConfig.
    */
   public static RUCNaturalConfig getInstance() {
-    RUCNaturalConfig result = instance;
-    if (result != null) {
-      return result;
-    }
-    synchronized (RUCNaturalConfig.class) {
-      if (instance == null) {
-        instance = new RUCNaturalConfig();
-      }
-      return instance;
-    }
+    return DocumentValidatorConfig.getBean(RUCNaturalConfig.class);
   }
 
   /**

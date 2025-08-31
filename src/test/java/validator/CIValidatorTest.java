@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.github.afcarrera.identity.ec.validator.CIValidator;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,6 +28,12 @@ public class CIValidatorTest {
 
   /** Instance of the CIValidator to be tested. */
   CIValidator validator;
+
+  /** Initializes the global setup before all tests are run. */
+  @BeforeAll
+  static void init() {
+    GlobalSetup.setup();
+  }
 
   /** Sets up the test environment by initializing the CIValidator instance. */
   @BeforeEach

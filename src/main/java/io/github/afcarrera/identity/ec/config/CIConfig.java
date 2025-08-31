@@ -26,20 +26,15 @@ import java.util.List;
  */
 public final class CIConfig {
 
-  /** Singleton instance of CIConfig. */
-  private static volatile CIConfig instance;
-
   /** First element in the identity handler chain. */
   private final IdentityHandler<IdentityDocument> firstChainElement;
 
   /**
-   * Private constructor to prevent instantiation.
-   *
-   * <p>Retrieves configuration properties
+   * Retrieves configuration properties
    *
    * <p>Initialize the first element in the chain with various handlers
    */
-  private CIConfig() {
+  CIConfig() {
     CIPropertiesConfig ciPropertiesConfig = CIPropertiesConfig.getInstance();
     firstChainElement =
         IdentityConfigUtil.linkChain(
@@ -78,16 +73,7 @@ public final class CIConfig {
    * @return Singleton instance of CIConfig.
    */
   public static CIConfig getInstance() {
-    CIConfig result = instance;
-    if (result != null) {
-      return result;
-    }
-    synchronized (CIConfig.class) {
-      if (instance == null) {
-        instance = new CIConfig();
-      }
-      return instance;
-    }
+    return DocumentValidatorConfig.getBean(CIConfig.class);
   }
 
   /**

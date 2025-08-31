@@ -25,9 +25,6 @@ import java.util.Properties;
  */
 public class RUCNaturalPropertiesConfig {
 
-  /** Singleton instance of RUCNaturalPropertiesConfig. */
-  private static volatile RUCNaturalPropertiesConfig instance;
-
   /** Properties object containing the configuration properties. */
   private final Properties properties;
 
@@ -35,11 +32,9 @@ public class RUCNaturalPropertiesConfig {
   private final String rucNaturalPrefix;
 
   /**
-   * Private constructor to prevent instantiation.
-   *
-   * <p>Initializes the properties object and sets the RUCNatural prefix.
+   * Initializes the properties object and sets the RUCNatural prefix.
    */
-  public RUCNaturalPropertiesConfig() {
+  RUCNaturalPropertiesConfig() {
     rucNaturalPrefix = prefixValuePath.concat("ruc-natural.");
     properties = PropertiesConfig.getInstance().getProperties();
   }
@@ -50,16 +45,7 @@ public class RUCNaturalPropertiesConfig {
    * @return Singleton instance of RUCNaturalPropertiesConfig.
    */
   public static RUCNaturalPropertiesConfig getInstance() {
-    RUCNaturalPropertiesConfig result = instance;
-    if (result != null) {
-      return result;
-    }
-    synchronized (RUCNaturalPropertiesConfig.class) {
-      if (instance == null) {
-        instance = new RUCNaturalPropertiesConfig();
-      }
-      return instance;
-    }
+    return DocumentValidatorConfig.getBean(RUCNaturalPropertiesConfig.class);
   }
 
   /**

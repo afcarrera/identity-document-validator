@@ -25,9 +25,6 @@ import java.util.Properties;
  */
 public class CIPropertiesConfig {
 
-  /** Singleton instance of CIPropertiesConfig. */
-  private static volatile CIPropertiesConfig instance;
-
   /** Properties object containing the configuration properties. */
   private final Properties properties;
 
@@ -35,11 +32,9 @@ public class CIPropertiesConfig {
   private final String ciPrefix;
 
   /**
-   * Private constructor to prevent instantiation.
-   *
-   * <p>Initializes the properties object and sets the CI prefix.
+   * Initializes the properties object and sets the CI prefix.
    */
-  public CIPropertiesConfig() {
+  CIPropertiesConfig() {
     ciPrefix = prefixValuePath.concat("ci.");
     properties = PropertiesConfig.getInstance().getProperties();
   }
@@ -50,16 +45,7 @@ public class CIPropertiesConfig {
    * @return Singleton instance of CIPropertiesConfig.
    */
   public static CIPropertiesConfig getInstance() {
-    CIPropertiesConfig result = instance;
-    if (result != null) {
-      return result;
-    }
-    synchronized (CIPropertiesConfig.class) {
-      if (instance == null) {
-        instance = new CIPropertiesConfig();
-      }
-      return instance;
-    }
+    return DocumentValidatorConfig.getBean(CIPropertiesConfig.class);
   }
 
   /**
