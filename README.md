@@ -136,11 +136,11 @@ Configure a bean for the validator singleton
 package com.example.demo.config;
 
 import org.springframework.beans.factory.SmartInitializingSingleton;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import io.github.afcarrera.identity.ec.config.DocumentValidatorConfig;
 
-@Component
+@Configuration
 public class SingletonFactoryInitializer implements SmartInitializingSingleton {
 
     @Override
