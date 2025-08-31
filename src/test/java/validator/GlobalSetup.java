@@ -15,31 +15,28 @@ package validator;
 
 import io.github.afcarrera.identity.ec.config.DocumentValidatorConfig;
 
-/**
- * Global setup class to initialize the DocumentValidatorConfig once before running tests.
- */
+/** Global setup class to initialize the DocumentValidatorConfig once before running tests. */
 public class GlobalSetup {
 
-    /** Flag to indicate if the setup has been initialized. */
-    private static volatile boolean initialized = false;
+  /** Flag to indicate if the setup has been initialized. */
+  private static volatile boolean initialized = false;
 
-    /** Private constructor to prevent instantiation. */
-    private GlobalSetup() {
-    }
+  /** Private constructor to prevent instantiation. */
+  private GlobalSetup() {}
 
-    /**
-     * Sets up the global configuration by initializing the DocumentValidatorConfig.
-     * This method ensures that the initialization happens only once in a thread-safe manner.
-     */
-    public static void setup() {
-        if (initialized) {
-            return;
-        }
-        synchronized (GlobalSetup.class) {
-            if (!initialized) {
-                initialized = true;
-                DocumentValidatorConfig.init();
-            }
-        }
+  /**
+   * Sets up the global configuration by initializing the DocumentValidatorConfig. This method
+   * ensures that the initialization happens only once in a thread-safe manner.
+   */
+  public static void setup() {
+    if (initialized) {
+      return;
     }
+    synchronized (GlobalSetup.class) {
+      if (!initialized) {
+        initialized = true;
+        DocumentValidatorConfig.init();
+      }
+    }
+  }
 }

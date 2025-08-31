@@ -30,7 +30,7 @@ public final class RUCNaturalConfig {
   private final IdentityHandler<IdentityDocument> firstChainElement;
 
   /**
-   * <p>Retrieves configuration properties
+   * Retrieves configuration properties
    *
    * <p>Initialize the first element in the chain with various handlers
    */
