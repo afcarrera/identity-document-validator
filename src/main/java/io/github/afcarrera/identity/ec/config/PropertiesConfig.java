@@ -33,9 +33,7 @@ public class PropertiesConfig {
   /** Properties object containing the configuration properties. */
   private final Properties properties;
 
-  /**
-   * Loads properties from the configuration file.
-   */
+  /** Loads properties from the configuration file. */
   PropertiesConfig() {
     properties = new Properties();
     try (InputStream inputStream =

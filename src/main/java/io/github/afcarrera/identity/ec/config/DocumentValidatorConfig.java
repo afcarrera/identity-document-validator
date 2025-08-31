@@ -14,11 +14,10 @@
 package io.github.afcarrera.identity.ec.config;
 
 import io.github.afcarrera.identity.ec.exception.IdentityDocumentException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Singleton configuration class that holds instances of various configuration classes.
@@ -29,61 +28,49 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DocumentValidatorConfig {
 
-    /**
-     * Logger for logging error messages.
-     */
-    private static final Logger log = LoggerFactory.getLogger(DocumentValidatorConfig.class);
+  /** Logger for logging error messages. */
+  private static final Logger log = LoggerFactory.getLogger(DocumentValidatorConfig.class);
 
-    /**
-     * Map holding singleton instances of configuration classes.
-     */
-    private static final Map<Class<?>, Object> SINGLETONS = new ConcurrentHashMap<>();
+  /** Map holding singleton instances of configuration classes. */
+  private static final Map<Class<?>, Object> SINGLETONS = new ConcurrentHashMap<>();
 
-    /**
-     * Atomic boolean to ensure initialization happens only once.
-     */
-    private static volatile boolean initialized = false;
+  /** Atomic boolean to ensure initialization happens only once. */
+  private static volatile boolean initialized = false;
 
-    /**
-     * Private constructor to prevent instantiation.
-     */
-    private DocumentValidatorConfig() {
+  /** Private constructor to prevent instantiation. */
+  private DocumentValidatorConfig() {}
+
+  /**
+   * Method to get the singleton instance of a configuration class.
+   *
+   * @param clazz Class of the configuration to retrieve.
+   * @param <T> Type of the configuration class.
+   * @return Singleton instance of the specified configuration class.
+   * @throws IdentityDocumentException if the class is not managed as a singleton.
+   */
+  public static <T> T getBean(Class<T> clazz) {
+    if (!SINGLETONS.containsKey(clazz)) {
+      throw new IdentityDocumentException(
+          "Class " + clazz.getName() + " is not a managed singleton.");
     }
+    return clazz.cast(SINGLETONS.get(clazz));
+  }
 
-    /**
-     * Method to get the singleton instance of a configuration class.
-     *
-     * @param clazz Class of the configuration to retrieve.
-     * @param <T>   Type of the configuration class.
-     * @return Singleton instance of the specified configuration class.
-     * @throws IdentityDocumentException if the class is not managed as a singleton.
-     */
-    public static <T> T getBean(Class<T> clazz) {
-        if (!SINGLETONS.containsKey(clazz)) {
-            throw new IdentityDocumentException(
-                    "Class " + clazz.getName() + " is not a managed singleton."
-            );
-        }
-        return clazz.cast(SINGLETONS.get(clazz));
+  /** Initializes the singleton instances of configuration classes. */
+  public static void init() {
+    if (initialized) {
+      return;
     }
-
-    /**
-     * Initializes the singleton instances of configuration classes.
-     */
-    public static void init(){
-        if (initialized) {
-            return;
-        }
-        synchronized (DocumentValidatorConfig.class) {
-            if (!initialized) {
-                log.info("Initializing DocumentValidatorConfig singletons...");
-                initialized = true;
-                SINGLETONS.putIfAbsent(PropertiesConfig.class, new PropertiesConfig());
-                SINGLETONS.putIfAbsent(CIPropertiesConfig.class, new CIPropertiesConfig());
-                SINGLETONS.putIfAbsent(CIConfig.class, new CIConfig());
-                SINGLETONS.putIfAbsent(RUCNaturalPropertiesConfig.class, new RUCNaturalPropertiesConfig());
-                SINGLETONS.putIfAbsent(RUCNaturalConfig.class, new RUCNaturalConfig());
-            }
-        }
+    synchronized (DocumentValidatorConfig.class) {
+      if (!initialized) {
+        log.info("Initializing DocumentValidatorConfig singletons...");
+        initialized = true;
+        SINGLETONS.putIfAbsent(PropertiesConfig.class, new PropertiesConfig());
+        SINGLETONS.putIfAbsent(CIPropertiesConfig.class, new CIPropertiesConfig());
+        SINGLETONS.putIfAbsent(CIConfig.class, new CIConfig());
+        SINGLETONS.putIfAbsent(RUCNaturalPropertiesConfig.class, new RUCNaturalPropertiesConfig());
+        SINGLETONS.putIfAbsent(RUCNaturalConfig.class, new RUCNaturalConfig());
+      }
     }
+  }
 }

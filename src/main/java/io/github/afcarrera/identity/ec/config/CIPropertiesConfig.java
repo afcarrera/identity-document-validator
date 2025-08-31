@@ -31,9 +31,7 @@ public class CIPropertiesConfig {
   /** Prefix used for CI-related properties. */
   private final String ciPrefix;
 
-  /**
-   * Initializes the properties object and sets the CI prefix.
-   */
+  /** Initializes the properties object and sets the CI prefix. */
   CIPropertiesConfig() {
     ciPrefix = prefixValuePath.concat("ci.");
     properties = PropertiesConfig.getInstance().getProperties();
