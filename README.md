@@ -128,6 +128,28 @@ If you prefer to configure Spring Validation and Spring Web manually, add the fo
     }
     ```
 
+#### Config class
+
+Configure a bean for the validator singleton
+
+```
+package com.example.demo.config;
+
+import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.stereotype.Component;
+
+import io.github.afcarrera.identity.ec.config.DocumentValidatorConfig;
+
+@Component
+public class SingletonFactoryInitializer implements SmartInitializingSingleton {
+
+    @Override
+    public void afterSingletonsInstantiated() {
+        DocumentValidatorConfig.init();
+    }
+}
+```
+
 #### Model class
 
 Use @CI annotation in a string field of your model class

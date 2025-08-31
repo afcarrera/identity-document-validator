@@ -30,18 +30,13 @@ public class PropertiesConfig {
   /** Logger for logging error messages. */
   private static final Logger log = LoggerFactory.getLogger(PropertiesConfig.class);
 
-  /** Singleton instance of PropertiesConfig. */
-  private static volatile PropertiesConfig instance;
-
   /** Properties object containing the configuration properties. */
   private final Properties properties;
 
   /**
-   * Private constructor to prevent instantiation.
-   *
-   * <p>Loads properties from the configuration file.
+   * Loads properties from the configuration file.
    */
-  public PropertiesConfig() {
+  PropertiesConfig() {
     properties = new Properties();
     try (InputStream inputStream =
         getClass().getClassLoader().getResourceAsStream(configPropertiesName)) {
@@ -57,16 +52,7 @@ public class PropertiesConfig {
    * @return Singleton instance of PropertiesConfig.
    */
   public static PropertiesConfig getInstance() {
-    PropertiesConfig result = instance;
-    if (result != null) {
-      return result;
-    }
-    synchronized (CIConfig.class) {
-      if (instance == null) {
-        instance = new PropertiesConfig();
-      }
-      return instance;
-    }
+    return DocumentValidatorConfig.getBean(PropertiesConfig.class);
   }
 
   /**
