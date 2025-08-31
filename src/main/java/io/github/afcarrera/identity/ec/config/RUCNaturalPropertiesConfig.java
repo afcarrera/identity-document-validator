@@ -33,7 +33,7 @@ public class RUCNaturalPropertiesConfig {
 
   /** Initializes the properties object and sets the RUCNatural prefix. */
   RUCNaturalPropertiesConfig() {
-    rucNaturalPrefix = prefixValuePath.concat("ruc-natural.");
+    rucNaturalPrefix = prefixValuePath.concat("ruc.natural.");
     properties = PropertiesConfig.getInstance().getProperties();
   }
 
